@@ -11,6 +11,10 @@
 		4607488B2BFFB2280031ACF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607488A2BFFB2280031ACF0 /* ContentView.swift */; };
 		4607488D2BFFB22A0031ACF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4607488C2BFFB22A0031ACF0 /* Assets.xcassets */; };
 		460748902BFFB22A0031ACF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4607488F2BFFB22A0031ACF0 /* Preview Assets.xcassets */; };
+		46C15E272C06AF2400399009 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C15E262C06AF2400399009 /* GameModel.swift */; };
+		46C15E292C06B13D00399009 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C15E282C06B13D00399009 /* GameViewModel.swift */; };
+		46C15E2B2C06B15000399009 /* NameEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C15E2A2C06B15000399009 /* NameEntryView.swift */; };
+		46C15E2D2C06BDE100399009 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C15E2C2C06BDE100399009 /* GameView.swift */; };
 		46DAB1072C02F70000E4451B /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46DAB1062C02F70000E4451B /* Inter-Black.ttf */; };
 		46DAB1092C02F70500E4451B /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46DAB1082C02F70500E4451B /* Inter-Bold.ttf */; };
 		46DAB10B2C02F70C00E4451B /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46DAB10A2C02F70C00E4451B /* Inter-Light.ttf */; };
@@ -25,6 +29,10 @@
 		4607488A2BFFB2280031ACF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4607488C2BFFB22A0031ACF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4607488F2BFFB22A0031ACF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		46C15E262C06AF2400399009 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		46C15E282C06B13D00399009 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		46C15E2A2C06B15000399009 /* NameEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEntryView.swift; sourceTree = "<group>"; };
+		46C15E2C2C06BDE100399009 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		46DAB1062C02F70000E4451B /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		46DAB1082C02F70500E4451B /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		46DAB10A2C02F70C00E4451B /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
@@ -69,6 +77,10 @@
 				4667DDD62C02F656008DDE6F /* Fonts */,
 				460748882BFFB2280031ACF0 /* unit_3_projectApp.swift */,
 				4607488A2BFFB2280031ACF0 /* ContentView.swift */,
+				46C15E2A2C06B15000399009 /* NameEntryView.swift */,
+				46C15E2C2C06BDE100399009 /* GameView.swift */,
+				46C15E282C06B13D00399009 /* GameViewModel.swift */,
+				46C15E262C06AF2400399009 /* GameModel.swift */,
 				4607488C2BFFB22A0031ACF0 /* Assets.xcassets */,
 				4607488E2BFFB22A0031ACF0 /* Preview Content */,
 			);
@@ -173,8 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4607488B2BFFB2280031ACF0 /* ContentView.swift in Sources */,
+				46C15E272C06AF2400399009 /* GameModel.swift in Sources */,
 				460748892BFFB2280031ACF0 /* unit_3_projectApp.swift in Sources */,
+				46C15E292C06B13D00399009 /* GameViewModel.swift in Sources */,
+				46C15E2B2C06B15000399009 /* NameEntryView.swift in Sources */,
 				46DAB1122C02F72200E4451B /* FontModifier.swift in Sources */,
+				46C15E2D2C06BDE100399009 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,9 @@ import SwiftUI
 
 // This is the initial view that a new user sees.
 struct ContentView: View {
+    // StateObject creates the observable object
+    @StateObject var viewModel = GameViewModel()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,7 +25,6 @@ struct ContentView: View {
                         .shadow(color: .gray, radius: 10, x: 0, y: 10)
                     Spacer()
                 }
-                .padding(.top, 60)
                 
                 // Make "Super" text pop with a larger font size and gradient
                 Text("Super")
@@ -38,7 +40,9 @@ struct ContentView: View {
                 
                 // "Tic Tac Toe" text with a gradient and more subtle shadow
                 Text("Tic Tac Toe")
-                    .font(.system(size: 52, weight: .bold))
+                    .customFont(.bold, 52)
+                // Make letters stick together more
+                    .tracking(-1)
                     .foregroundStyle(
                         LinearGradient(
                             gradient: Gradient(colors: [.blue, .red]),
@@ -47,13 +51,13 @@ struct ContentView: View {
                         )
                     )
                 
-                // Redesigned button with solid color, rounded corners, and shadow
-                NavigationLink(destination: GameView()) {
+                // Redesigned button with solid color, rounded corners, and shadow, passed down the viewModel / data in the app
+                NavigationLink(destination: NameEntryView(viewModel: viewModel)) {
                     Text("Start Game")
                         .customFont(.regular, 24)
-                        .padding()
+                        .padding(.vertical, 24)
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(Color.black.opacity(0.8))
                         .foregroundColor(.white)
                         .cornerRadius(15)
                         .shadow(color: .gray, radius: 5, x: 0, y: 5)
@@ -71,15 +75,8 @@ struct ContentView: View {
                 )
                 .edgesIgnoringSafeArea(.all)
             )
+            .padding(.top, 60)
         }
-    }
-}
-
-struct GameView: View {
-    var body: some View {
-        Text("Super Tic Tac Toe Game")
-            .font(.largeTitle)
-            .navigationTitle("Game")
     }
 }
 
