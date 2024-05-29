@@ -60,7 +60,7 @@ class GameViewModel: ObservableObject {
         
         return true
     }
-
+    
     func checkWin(player: String) -> Bool {
         // Check for wins in each big row
         for bigRow in 0..<3 {
@@ -83,57 +83,97 @@ class GameViewModel: ObservableObject {
         
         return false
     }
-
+    
     func checkBigRowWin(bigRow: Int, player: String) -> Bool {
-        for smallRow in 0..<3 {
-            if game.board[bigRow][0][smallRow][0] == player &&
-               game.board[bigRow][1][smallRow][1] == player &&
-               game.board[bigRow][2][smallRow][2] == player {
-                return true
-            }
+        if checkSmallBoardWin(bigRow: bigRow, bigCol: 0) == player &&
+            checkSmallBoardWin(bigRow: bigRow, bigCol: 1) == player &&
+            checkSmallBoardWin(bigRow: bigRow, bigCol: 2) == player {
+            return true
         }
         return false
     }
-
+    
     func checkBigColWin(bigCol: Int, player: String) -> Bool {
-        for smallCol in 0..<3 {
-            if game.board[0][bigCol][0][smallCol] == player &&
-               game.board[1][bigCol][1][smallCol] == player &&
-               game.board[2][bigCol][2][smallCol] == player {
-                return true
-            }
+        if checkSmallBoardWin(bigRow: 0, bigCol: bigCol) == player &&
+            checkSmallBoardWin(bigRow: 1, bigCol: bigCol) == player &&
+            checkSmallBoardWin(bigRow: 2, bigCol: bigCol) == player {
+            return true
         }
         return false
     }
-
+    
     func checkBigDiagonalWin(player: String) -> Bool {
         // Check the top-left to bottom-right diagonal
-        if game.board[0][0][0][0] == player &&
-           game.board[1][1][1][1] == player &&
-           game.board[2][2][2][2] == player {
+        if checkSmallBoardWin(bigRow: 0, bigCol: 0) == player &&
+            checkSmallBoardWin(bigRow: 1, bigCol: 1) == player &&
+            checkSmallBoardWin(bigRow: 2, bigCol: 2) == player {
             return true
         }
         
         // Check the top-right to bottom-left diagonal
-        if game.board[0][2][0][2] == player &&
-           game.board[1][1][1][1] == player &&
-           game.board[2][0][2][0] == player {
+        if checkSmallBoardWin(bigRow: 0, bigCol: 2) == player &&
+            checkSmallBoardWin(bigRow: 1, bigCol: 1) == player &&
+            checkSmallBoardWin(bigRow: 2, bigCol: 0) == player {
             return true
         }
         
         return false
     }
-
+    
+    func checkSmallBoardWin(bigRow: Int, bigCol: Int) -> String {
+        // Check rows
+        for smallRow in 0..<3 {
+            if game.board[bigRow][bigCol][smallRow][0] != "" &&
+                game.board[bigRow][bigCol][smallRow][0] == game.board[bigRow][bigCol][smallRow][1] &&
+                game.board[bigRow][bigCol][smallRow][1] == game.board[bigRow][bigCol][smallRow][2] {
+                return game.board[bigRow][bigCol][smallRow][0]
+            }
+        }
+        
+        // Check columns
+        for smallCol in 0..<3 {
+            if game.board[bigRow][bigCol][0][smallCol] != "" &&
+                game.board[bigRow][bigCol][0][smallCol] == game.board[bigRow][bigCol][1][smallCol] &&
+                game.board[bigRow][bigCol][1][smallCol] == game.board[bigRow][bigCol][2][smallCol] {
+                return game.board[bigRow][bigCol][0][smallCol]
+            }
+        }
+        
+        // Check diagonals
+        if game.board[bigRow][bigCol][0][0] != "" &&
+            game.board[bigRow][bigCol][0][0] == game.board[bigRow][bigCol][1][1] &&
+            game.board[bigRow][bigCol][1][1] == game.board[bigRow][bigCol][2][2] {
+            return game.board[bigRow][bigCol][0][0]
+        }
+        
+        if game.board[bigRow][bigCol][0][2] != "" &&
+            game.board[bigRow][bigCol][0][2] == game.board[bigRow][bigCol][1][1] &&
+            game.board[bigRow][bigCol][1][1] == game.board[bigRow][bigCol][2][0] {
+            return game.board[bigRow][bigCol][0][2]
+        }
+        
+        // Check if the small board is fully filled (draw)
+        for smallRow in 0..<3 {
+            for smallCol in 0..<3 {
+                if game.board[bigRow][bigCol][smallRow][smallCol] == "" {
+                    return ""
+                }
+            }
+        }
+        
+        return "D" // Draw
+    }
+    
     func getNextBoard(bigRow: Int, bigCol: Int, smallRow: Int, smallCol: Int) -> (Int, Int)? {
-        // Check if the mini board at the next position is available
-        if isBoardAvailable(bigRow: smallRow, bigCol: smallCol) {
+        // Check if the mini board at the next position is available and not already won
+        if isBoardAvailable(bigRow: smallRow, bigCol: smallCol) && checkSmallBoardWin(bigRow: smallRow, bigCol: smallCol) == "" {
             return (smallRow, smallCol)
         }
         
-        // If the mini board is not available, allow the player to choose any available board
+        // If the mini board is not available or already won, allow the player to choose any available board
         for bigRow in 0..<3 {
             for bigCol in 0..<3 {
-                if isBoardAvailable(bigRow: bigRow, bigCol: bigCol) {
+                if isBoardAvailable(bigRow: bigRow, bigCol: bigCol) && checkSmallBoardWin(bigRow: bigRow, bigCol: bigCol) == "" {
                     return (bigRow, bigCol)
                 }
             }
@@ -141,8 +181,14 @@ class GameViewModel: ObservableObject {
         
         return nil
     }
-
+    
     func isBoardAvailable(bigRow: Int, bigCol: Int) -> Bool {
+        // Check if the small board is not yet won or drawn
+        if checkSmallBoardWin(bigRow: bigRow, bigCol: bigCol) != "" {
+            return false
+        }
+        
+        // Check if the small board has any empty cells
         for smallRow in 0..<3 {
             for smallCol in 0..<3 {
                 if game.board[bigRow][bigCol][smallRow][smallCol] == "" {
@@ -150,6 +196,11 @@ class GameViewModel: ObservableObject {
                 }
             }
         }
+        
         return false
+    }
+    
+    func resetGame() -> Void {
+        game = GameModel(playerXName: game.playerXName, playerOName: game.playerOName)
     }
 }

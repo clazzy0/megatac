@@ -13,7 +13,7 @@ struct GameModel {
     var board: [[[[String]]]]
     var currentPlayer: String
     
-    init(playerXName: String = "", playerOName: String = "", board: [[[[String]]]] = Array(repeating: Array(repeating: Array(repeating: Array(repeating: "", count: 3), count: 3), count: 3), count: 3), currentPlayer: String = "X") {
+    init(playerXName: String = "Player 1", playerOName: String = "Player 2", board: [[[[String]]]] = Array(repeating: Array(repeating: Array(repeating: Array(repeating: "", count: 3), count: 3), count: 3), count: 3), currentPlayer: String = "X") {
         self.playerXName = playerXName
         self.playerOName = playerOName
         self.board = board

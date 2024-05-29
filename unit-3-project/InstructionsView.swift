@@ -83,12 +83,21 @@ struct InstructionsView: View {
 
             }
             .padding(.horizontal, 30)
-            .padding(.top, 20)
+            .padding(.top, 30)
         }
         .navigationTitle("Instructions")
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [.white, .gray.opacity(0.1)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .edgesIgnoringSafeArea(.all)
+        )
+        
     }
 }
 
 #Preview {
-    InstructionsView()
+    ContentView()
 }
