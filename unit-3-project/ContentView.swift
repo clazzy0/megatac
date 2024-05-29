@@ -54,7 +54,7 @@ struct ContentView: View {
                 NavigationLink(destination: NameEntryView(viewModel: viewModel)) {
                     Text("Start Game")
                         .customFont(.regular, 24)
-                        .padding(.vertical, 22)
+                        .padding(.vertical, 24)
                         .frame(maxWidth: .infinity)
                         .background(Color.black.opacity(0.9))
                         .foregroundColor(.white)
@@ -73,7 +73,7 @@ struct ContentView: View {
                             .customFont(.regular, 20)
                             .foregroundColor(.white)
                     }
-                    .padding(.vertical, 14)
+                    .padding(.vertical, 16)
                     .frame(maxWidth: .infinity)
                     .background(Color.navy.opacity(0.8))
                     .cornerRadius(15)
