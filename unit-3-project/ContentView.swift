@@ -21,14 +21,14 @@ struct ContentView: View {
                     Image("super-ttt")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 350, height: 350)
+                        .frame(width: 330, height: 330)
                         .shadow(color: .gray, radius: 10, x: 0, y: 10)
                     Spacer()
                 }
                 
                 // Make "Super" text pop with a larger font size and gradient
                 Text("Super")
-                    .customFont(.bold, 60)
+                    .customFont(.bold, 56)
                     .foregroundStyle(
                         LinearGradient(
                             gradient: Gradient(colors: [.yellow, .orange]),
@@ -36,16 +36,15 @@ struct ContentView: View {
                             endPoint: .bottom
                         )
                     )
-                    .padding(.top, 20)
                 
                 // "Tic Tac Toe" text with a gradient and more subtle shadow
                 Text("Tic Tac Toe")
-                    .customFont(.bold, 52)
+                    .customFont(.bold, 48)
                 // Make letters stick together more
                     .tracking(-1)
                     .foregroundStyle(
                         LinearGradient(
-                            gradient: Gradient(colors: [.blue, .red]),
+                            gradient: Gradient(colors: [.blue.opacity(0.75), .purple]),
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -55,12 +54,30 @@ struct ContentView: View {
                 NavigationLink(destination: NameEntryView(viewModel: viewModel)) {
                     Text("Start Game")
                         .customFont(.regular, 24)
-                        .padding(.vertical, 24)
+                        .padding(.vertical, 22)
                         .frame(maxWidth: .infinity)
-                        .background(Color.black.opacity(0.8))
+                        .background(Color.black.opacity(0.9))
                         .foregroundColor(.white)
                         .cornerRadius(15)
-                        .shadow(color: .gray, radius: 5, x: 0, y: 5)
+                }
+                .padding(.horizontal, 30)
+                .padding(.top, -5)
+                // View for giving instructions, per usability testing feedback
+                NavigationLink(destination: InstructionsView()) {
+                    HStack {
+                        Image(systemName: "book.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                        
+                        Text("Guide")
+                            .customFont(.regular, 20)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 14)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.navy.opacity(0.8))
+                    .cornerRadius(15)
+                    
                 }
                 .padding(.horizontal, 30)
                 
@@ -75,9 +92,14 @@ struct ContentView: View {
                 )
                 .edgesIgnoringSafeArea(.all)
             )
-            .padding(.top, 60)
+            .padding(.top, 50)
         }
     }
+}
+
+// Define a custom color for navy
+extension Color {
+    static let navy = Color(red: 0.0, green: 0.0, blue: 0.15)
 }
 
 #Preview {

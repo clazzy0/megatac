@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct BoardView: View {
+    // Linked data
     @EnvironmentObject var viewModel: GameViewModel
     
     var body: some View {
         VStack {
-            Text("Super Tic Tac Toe Game")
-                .font(.largeTitle)
-                .navigationTitle("Game")
+            Text("Game")
+                .customFont(.bold, 48)
             Text("\(viewModel.game.playerXName) (X) vs \(viewModel.game.playerOName) (O)")
-                .font(.title2)
+                .customFont(.regular, 18)
                 .padding()
             
             // Super Tic Tac Toe grid
@@ -75,6 +75,6 @@ struct CellView: View {
 }
 
 #Preview {
-    GameView()
+    BoardView()
         .environmentObject(GameViewModel())
 }
